@@ -1,7 +1,9 @@
 spotify-music-app
 ==============================
 
-This app will help all music enthusiasts to predict success/failure of a new music, get new song recommendations, insights module and analytics all in one place
+This app will help all music enthusiasts to predict success/failure of a new music, get new song recommendations, insights module and analytics all in one place.
+
+* Built in Python = 3.10
 
 Project Organization
 ------------
