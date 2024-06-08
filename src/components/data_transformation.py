@@ -91,6 +91,9 @@ class DataTransformationConfig():
     transform_test_path = TRANSFORM_TEST_FILE_PATH
     transform_validation_path = TRANSFORM_VALIDATION_FILE_PATH
     feature_engg_obj_path = FEATURE_ENGG_OBJ_FILE_PATH
+    transform_train_data_key = TRANSFORM_TRAIN_DIR_KEY
+    transform_test_data_key = TRANSFORM_TEST_DIR_KEY
+    transform_validation_data_key = TRANSFORM_VAIDATION_DIR_KEY
 
 class DataTransformation:
     def __init__(self):
@@ -188,13 +191,14 @@ class DataTransformation:
             df_test = pd.DataFrame(test_arr)
             df_validation = pd.DataFrame(validation_arr)
 
-            os.makedirs(os.path.join(self.data_transformation_config.transform_train_path),exist_ok=True)
-            df_train.to_csv(self.data_transformation_config.transform_train_path, index=False,header=True)
+            os.makedirs(os.path.dirname(self.data_transformation_config.transform_train_path),exist_ok=True)
+            #df_train.to_csv(self.data_transformation_config.transform_train_path, index=False,header=True)
+            df_train.to_csv(self.data_transformation_config.transform_train_path + '.csv', index = False, header = True)
 
-            os.makedirs(os.path.join(self.data_transformation_config.transform_test_path),exist_ok=True)
+            os.makedirs(os.path.dirname(self.data_transformation_config.transform_test_path),exist_ok=True)
             df_test.to_csv(self.data_transformation_config.transform_test_path, index=False,header=True)
 
-            os.makedirs(os.path.join(self.data_transformation_config.tran),exist_ok=True)
+            os.makedirs(os.path.dirname(self.data_transformation_config.transform_validation_path),exist_ok=True)
             df_validation.to_csv(self.data_transformation_config.transform_validation_path, index=False,header=True)
 
             save_obj(file_path = self.data_transformation_config.processed_obj_file_path,
@@ -206,4 +210,5 @@ class DataTransformation:
             return (train_arr,test_arr,validation_arr,self.data_transformation_config.processed_obj_file_path)
 
         except Exception as e:
+            logging.info(CustomException(e,sys))
             raise CustomException(e,sys)
