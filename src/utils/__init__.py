@@ -19,7 +19,7 @@ def evaluate_model(X_train, y_train, X_test, y_test, models):
         report = {}
 
         for i in range(len(models)):
-            model = list(models.values)[i]
+            model = list(models.values())[i]
 
             model.fit(X_train, y_train)
 
